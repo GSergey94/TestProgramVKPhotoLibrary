@@ -1,4 +1,10 @@
 import SwiftyVK
+import CoreData
+
+
+
+// ---- Хранение картинок в памяти а не в Core Data - [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image.png"]] Objective - C
+
 
 class VKDelegateClass: VKDelegate {
     let appID = "5851140"
@@ -6,10 +12,10 @@ class VKDelegateClass: VKDelegate {
     let view = LoginViewController()
     
     
-    
     init() {
         VK.config.logToConsole = true
         VK.configure(withAppId: appID, delegate: self)
+        
     }
     
     //Функция вызывается когда нужны полномочия авторизации
@@ -24,14 +30,119 @@ class VKDelegateClass: VKDelegate {
         print("Пользователь вошел в систему\n")
         //Сохранение UserID
         let userID = parameters["user_id"]
-        //Сохранение данных:
+        
+        //Save userID
         let defaults = UserDefaults.standard
         defaults.setValue(userID, forKey: "userID")
         defaults.synchronize()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
         
+        //Получение данных userID
+        
+        //let user = defaults.string(forKey: userID!)
+        
+       // if userID == user { print("Для данного пользователя уже получены данные по альбомам "); return }
         
         
+        var Albums = [Structurs.album()]
+        var AlbumsFromCoreData = [Structurs.album()]
+        Albums.removeAll()
+        AlbumsFromCoreData.removeAll()
+        
+        let CoreData = CoreDataManager()
+       // AlbumsFromCoreData = CoreData.DownloadInformationAboutAlbum()
+        //print("Количество альбомов закаченых из корДаты: \(AlbumsFromCoreData.count)")
+        
+        // Get information about alboms
+        VK.API.Photos.getAlbums([VK.Arg.needCovers: userID!]).send(
+            onSuccess: {
+                response in
+                
+                // if Download information about albums succsessfull delete old albums from CoreData
+                AlbumsFromCoreData = CoreData.DownloadInformationAboutAlbum(delete: true)
+                
+                
+                let context = CoreDataManager.instance.managedObjectContext
+                // Entity Album
+                let entityDescriptionAlbum = NSEntityDescription.entity(forEntityName: "Album", in: context)
+                // Entity Photo
+                let entityDescriptionPhoto = NSEntityDescription.entity(forEntityName: "Photo", in: context)
+               
+                for index in 0 ..< response["count"].intValue {
+                    
+                        // Create new object - Album
+                        let AlbumObject = Album(entity: entityDescriptionAlbum!, insertInto: context)
+                    
+                        Albums.append(Structurs.album.init(
+                                      userID: userID!
+                                    , albumID: response["items",index,"id"].stringValue
+                                    , albumName: response["items",index,"title"].stringValue
+                                    , albumPhoto: response["items",index,"thumb_src"].stringValue
+                        ))
+                    
+                    
+                        // Save Parament album
+                        AlbumObject.userID = userID
+                        AlbumObject.albumID = Albums[index].albumID
+                        AlbumObject.albumName = Albums[index].albumName
+                        AlbumObject.albumPhoto = Albums[index].albumPhoto
+                        
+                        // Save Album
+                        do { try context.save() } catch { return }
+                    
+                   
+                    //Get information about photo
+                    VK.API.Photos.get([VK.Arg.albumId: Albums[index].albumID]).send(
+                        onSuccess: {
+                            response in
+                           
+                           
+                            // Value for converter photo date
+                            let dayTimePeriodFormatter = DateFormatter()
+                            dayTimePeriodFormatter.dateFormat = "dd MMM YYYY"
+                            
+                            for i in 0 ..< response["count"].intValue {
+                                
+                                    let PhotoObject = Photo(entity: entityDescriptionPhoto!, insertInto: context)
+                                
+                                    // Get Date Photo
+                                    let date = NSDate(timeIntervalSince1970: (response["items",i,"date"].doubleValue))
+                                    let dateString = dayTimePeriodFormatter.string(from: date as Date)
+                                
+                                    PhotoObject.idAlbum = Albums[index].albumID
+                                    PhotoObject.idPhoto = response["items",i,"id"].stringValue
+                                    PhotoObject.photoReference = response["items",i,"photo_604"].stringValue
+                                    PhotoObject.miniPhotoReference = response["items",i,"photo_130"].stringValue
+                                    PhotoObject.photoName = response["items",i,"text"].stringValue
+                                    PhotoObject.photoDate = dateString
+                                    PhotoObject.photoLocLONG = response["items",i,"long"].stringValue
+                                    PhotoObject.photoLocLAT = response["items",i,"lat"].stringValue
+                                
+                                do { try context.save() } catch { return }
+                             }
+                            
+                    },
+                        onError: {error in print(error)}
+                    )
+                    
+                 
+                
+                }
+                
+                
+                
+                 //Save information about user data:
+                 let defaults = UserDefaults.standard
+                 defaults.setValue(userID, forKey: userID!)
+                 defaults.synchronize()
+                 NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
+            
+                
+                
+        },
+            onError: {error in print(error)}
+        )
+
         
         
         
@@ -66,5 +177,8 @@ class VKDelegateClass: VKDelegate {
         return UIApplication.shared.delegate!.window!!.rootViewController!
         
     }
+    
+   
+    
     
 }

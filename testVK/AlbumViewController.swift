@@ -1,92 +1,109 @@
 
 import UIKit
 import SwiftyVK
+import CoreData
+import Kingfisher
 
-class AlbumViewController: UITableViewController, UINavigationControllerDelegate {
+
+class AlbumViewController: UITableViewController,  UINavigationControllerDelegate{
     
     
-    var albumName = [String]()
-    var albumPhoto = [Int]()
-    
-    var datePhoto = [String]()
-    var photosName = [String]()
-    
+   
+    var albumID = [String]()
+    var Albums = [Structurs.album()]
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Получение данных userID
-        let defaults = UserDefaults.standard
-        let userID = defaults.string(forKey: "userID")
+        Albums.removeAll()
+        let CoreData = CoreDataManager()
+        Albums = CoreData.DownloadInformationAboutAlbum()
         
-       
-        VK.API.Photos.getAlbums([VK.Arg.userId: userID! ]).send(
-            onSuccess: {
-                response in
-                for index in 0 ..< response.count {
-                    self.albumName.append("")
-                    self.albumPhoto.append(0)
-                    self.albumName[index] = response["items",index,"title"].stringValue
-                    self.albumPhoto[index] = response["items",index,"thumb_id"].intValue
-                
-                }
-                print("Количество ячеек - \(self.albumName.count)  значения \(self.albumName)")
-                self.tableView.reloadData()
-               
-        },
-            onError: {error in print(error)}
-        )
         
-    
     }
-
-    
+    //---------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    ///---------------------------------------------------------------------------------------
+    /*
+    func DownloadInformationAboutAlbum(){
+        Albums.removeAll()
+        //To obtain date about  userID
+        let defaults = UserDefaults.standard
+        let user = defaults.string(forKey: "userID")
+        
+        // To obtain data about AlbumName and album photo URL
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
+        let sortDescriptorUserID = NSSortDescriptor(key: "userID", ascending: true)
+        let resultPredicate = NSPredicate(format: "userID = %@", user!)
+        fetchRequest.sortDescriptors = [sortDescriptorUserID]
+        fetchRequest.predicate = resultPredicate
+        do {
+            let results = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest)
+            for result in results as! [Album] {
+                Albums.append(Structurs.album.init(userID: user!,
+                                                   albumID: result.albumID!,
+                                                   albumName: result.albumName!,
+                                                   albumPhoto: result.albumPhoto!
+                ))
+                
+            }
+        } catch {
+            print(error)
+        }
+    }
+ */
 
-    
-    
+//---------------------------------------------------------------------------------------
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+//---------------------------------------------------------------------------------------
     //Задает колиество ячеек тайблицы
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.albumName.count
+        return Albums.count
     }
     
 
+//---------------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        cell.imageAlbum?.image = UIImage(named: "VK.png")
-        cell.nameAlbum?.text = albumName[indexPath.row]
-        
-        cell.imageAlbum.layer.cornerRadius = 30.0
-        cell.imageAlbum.clipsToBounds = true
+       let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
+       cell.imageAlbum.kf.setImage(with: URL(string: Albums[indexPath.row].albumPhoto))
+       cell.nameAlbum?.text = Albums[indexPath.row].albumName
+       cell.imageAlbum.layer.cornerRadius = 30.0
+       cell.imageAlbum.clipsToBounds = true
  
-        return cell
+       return cell
     }
     
+ //---------------------------------------------------------------------------------------
+    // Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAlbum"{
             if let indexPath = tableView.indexPathForSelectedRow {
              let destinationController = segue.destination as! PhotosViewController
-             destinationController.datePhoto.append(datePhoto[indexPath.row])
-             destinationController.photosName.append(photosName[indexPath.row])
+             destinationController.albumID = Albums[indexPath.row].albumID
             }
         }
     }
     
+//---------------------------------------------------------------------------------------
+    // Button LOG OUT
     @IBAction func LogOut(_ sender: Any) {
+       
+        
         VK.logOut()
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginView")
         self.present(vc!, animated: true, completion: nil)
-       
+        
         
     }
     
     
     
+    
+
 }
 

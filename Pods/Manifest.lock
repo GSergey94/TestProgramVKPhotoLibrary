@@ -1,7 +1,9 @@
 PODS:
+  - Kingfisher (3.5.0)
   - SwiftyVK (2.0.5)
 
 DEPENDENCIES:
+  - Kingfisher
   - SwiftyVK (from `https://github.com/WE-St0r/SwiftyVK.git`, commit `d12122c`)
 
 EXTERNAL SOURCES:
@@ -15,8 +17,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/WE-St0r/SwiftyVK.git
 
 SPEC CHECKSUMS:
+  Kingfisher: 7c62087039d93d26c54c8dd9b0b588d2ce55cef6
   SwiftyVK: a36055202386d86024f10ab56b814051081afe8e
 
-PODFILE CHECKSUM: 66c4e776108bbd77430833f2e7d08d6ae9c6b34e
+PODFILE CHECKSUM: 0edcfb3051768189687affdae5785ea138c0e301
 
 COCOAPODS: 1.2.0

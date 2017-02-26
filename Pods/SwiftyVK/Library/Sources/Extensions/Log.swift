@@ -119,8 +119,6 @@ extension VK {
       printToConsole == true
         ? printSync("\(date): \(key) ~ \(message)")
         : ()
-        
-      
     }
 
 

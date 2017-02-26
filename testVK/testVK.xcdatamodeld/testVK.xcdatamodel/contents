@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G1108" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Album" representedClassName="Album" syncable="YES" codeGenerationType="class">
+        <attribute name="albumID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="albumName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="albumPhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
+        <attribute name="idAlbum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idPhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="miniPhotoReference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoLocLAT" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoLocLONG" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoReference" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Album" positionX="252" positionY="108" width="128" height="103"/>
+        <element name="Photo" positionX="486" positionY="63" width="128" height="163"/>
+    </elements>
+</model>
