@@ -2,7 +2,7 @@
 //  Album+CoreDataProperties.swift
 //  
 //
-//  Created by Владимир on 18.02.17.
+//  Created by Владимир on 26.02.17.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -21,5 +21,6 @@ extension Album {
     @NSManaged public var albumName: String?
     @NSManaged public var albumPhoto: String?
     @NSManaged public var userID: String?
+    @NSManaged public var dateUpdate: String?
 
 }

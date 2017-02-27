@@ -135,10 +135,11 @@ class CoreDataManager {
             for result in results as! [Album] {
                 
                 if delete == false{
-                    Albums.append(Structurs.album.init(userID: user!,
-                                                       albumID: result.albumID!,
-                                                       albumName: result.albumName!,
-                                                       albumPhoto: result.albumPhoto!
+                    Albums.append(Structurs.album.init(userID: user!
+                                                       ,albumID: result.albumID!
+                                                       ,albumName: result.albumName!
+                                                       ,albumPhoto: result.albumPhoto!
+                                                       ,dateUpdate: result.dateUpdate!
                     ))
                 }
                 else{
@@ -153,7 +154,47 @@ class CoreDataManager {
         return Albums
         
     }
+    //--------------------------------------------------------------
+    //    Func for Download information about Photos from CoreData
+    //--------------------------------------------------------------
 
+    func DownloadInformationAboutPhotos(delete:Bool = false, albumID:String = "")->[Structurs.photo]{
+        var Photo = [Structurs.photo()]
+        Photo.removeAll()
+        
+        let context = CoreDataManager.instance.managedObjectContext
+    
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
+        var sortDescriptorUserID = NSSortDescriptor(key: "idAlbum", ascending: true)
+        var resultPredicate = NSPredicate(format: "idAlbum = %@", albumID)
+        
+        
+        
+        fetchRequest.sortDescriptors = [sortDescriptorUserID]
+        fetchRequest.predicate = resultPredicate
+        do {
+            let results = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest)
+            for result in results as! [Photo] {
+                if delete == false{
+                Photo.append(Structurs.photo.init(   idPhoto: result.idPhoto!
+                    ,photoReference: result.photoReference!
+                    ,miniPhotoReference: result.miniPhotoReference!
+                    ,photoName: result.photoName!
+                    ,photoDate: result.photoDate!
+                    ,photoLocLONG: result.photoLocLONG!
+                    ,photoLocLAT: result.photoLocLAT!
+                ))
+                }
+                else{
+                    context.delete(result as NSManagedObject)
+                }
+            }
+            
+            
+        } catch { print(error) }
+        return Photo
+        
+    }
     
     
 }

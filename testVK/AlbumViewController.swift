@@ -26,35 +26,7 @@ class AlbumViewController: UITableViewController,  UINavigationControllerDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    ///---------------------------------------------------------------------------------------
-    /*
-    func DownloadInformationAboutAlbum(){
-        Albums.removeAll()
-        //To obtain date about  userID
-        let defaults = UserDefaults.standard
-        let user = defaults.string(forKey: "userID")
-        
-        // To obtain data about AlbumName and album photo URL
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
-        let sortDescriptorUserID = NSSortDescriptor(key: "userID", ascending: true)
-        let resultPredicate = NSPredicate(format: "userID = %@", user!)
-        fetchRequest.sortDescriptors = [sortDescriptorUserID]
-        fetchRequest.predicate = resultPredicate
-        do {
-            let results = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest)
-            for result in results as! [Album] {
-                Albums.append(Structurs.album.init(userID: user!,
-                                                   albumID: result.albumID!,
-                                                   albumName: result.albumName!,
-                                                   albumPhoto: result.albumPhoto!
-                ))
-                
-            }
-        } catch {
-            print(error)
-        }
-    }
- */
+    
 
 //---------------------------------------------------------------------------------------
     override func numberOfSections(in tableView: UITableView) -> Int {

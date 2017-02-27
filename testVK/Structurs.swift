@@ -16,6 +16,7 @@ class Structurs {
         var albumID = ""
         var albumName = ""
         var albumPhoto = ""
+        var dateUpdate = ""
 
     }
     

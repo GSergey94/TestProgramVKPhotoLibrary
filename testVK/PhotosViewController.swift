@@ -16,7 +16,9 @@ class PhotosViewController: UITableViewController {
     //---------------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        DownloadInformationAboutPhotos()
+        Photo.removeAll()
+        let CoreData = CoreDataManager()
+        Photo = CoreData.DownloadInformationAboutPhotos(albumID: albumID)
     }
     //---------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning() {
@@ -56,30 +58,7 @@ class PhotosViewController: UITableViewController {
         }
     }
     //---------------------------------------------------------------------------------------
-    func DownloadInformationAboutPhotos(){
-        Photo.removeAll()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-        let sortDescriptorUserID = NSSortDescriptor(key: "idAlbum", ascending: true)
-        let resultPredicate = NSPredicate(format: "idAlbum = %@", albumID)
-        
-        fetchRequest.sortDescriptors = [sortDescriptorUserID]
-        fetchRequest.predicate = resultPredicate
-        do {
-            let results = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest)
-            for result in results as! [Photo] {
-                Photo.append(Structurs.photo.init(   idPhoto: result.idPhoto!
-                    ,photoReference: result.photoReference!
-                    ,miniPhotoReference: result.miniPhotoReference!
-                    ,photoName: result.photoName!
-                    ,photoDate: result.photoDate!
-                    ,photoLocLONG: result.photoLocLONG!
-                    ,photoLocLAT: result.photoLocLAT!))
-                
-            }
-            
-        } catch { print(error) }
-
-    }
+    
     
     
     

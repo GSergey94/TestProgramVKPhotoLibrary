@@ -4,6 +4,7 @@
         <attribute name="albumID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="albumName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="albumPhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateUpdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
@@ -17,7 +18,7 @@
         <attribute name="photoReference" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Album" positionX="252" positionY="108" width="128" height="103"/>
+        <element name="Album" positionX="252" positionY="108" width="128" height="120"/>
         <element name="Photo" positionX="486" positionY="63" width="128" height="163"/>
     </elements>
 </model>

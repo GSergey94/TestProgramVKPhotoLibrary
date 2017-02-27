@@ -37,29 +37,25 @@ class VKDelegateClass: VKDelegate {
         defaults.synchronize()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
         
-        //Получение данных userID
-        
-        //let user = defaults.string(forKey: userID!)
-        
-       // if userID == user { print("Для данного пользователя уже получены данные по альбомам "); return }
         
         
         var Albums = [Structurs.album()]
-        var AlbumsFromCoreData = [Structurs.album()]
         Albums.removeAll()
-        AlbumsFromCoreData.removeAll()
-        
+    
         let CoreData = CoreDataManager()
-       // AlbumsFromCoreData = CoreData.DownloadInformationAboutAlbum()
-        //print("Количество альбомов закаченых из корДаты: \(AlbumsFromCoreData.count)")
+        var albumsFromCoreData = CoreData.DownloadInformationAboutAlbum()
+        // Value for converter photo date
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "dd MMM YYYY"
+        let minutsTimePeriodFormatter = DateFormatter()
+        minutsTimePeriodFormatter.dateFormat = "dd MMM YYYY HH:mm:ss"
+        
         
         // Get information about alboms
         VK.API.Photos.getAlbums([VK.Arg.needCovers: userID!]).send(
             onSuccess: {
                 response in
                 
-                // if Download information about albums succsessfull delete old albums from CoreData
-                AlbumsFromCoreData = CoreData.DownloadInformationAboutAlbum(delete: true)
                 
                 
                 let context = CoreDataManager.instance.managedObjectContext
@@ -70,38 +66,52 @@ class VKDelegateClass: VKDelegate {
                
                 for index in 0 ..< response["count"].intValue {
                     
+                    // Get Date update Album
+                    let date = NSDate(timeIntervalSince1970: (response["items",index,"updated"].doubleValue))
+                    let dateString = minutsTimePeriodFormatter.string(from: date as Date)
+                    
                         // Create new object - Album
                         let AlbumObject = Album(entity: entityDescriptionAlbum!, insertInto: context)
-                    
                         Albums.append(Structurs.album.init(
                                       userID: userID!
                                     , albumID: response["items",index,"id"].stringValue
                                     , albumName: response["items",index,"title"].stringValue
                                     , albumPhoto: response["items",index,"thumb_src"].stringValue
+                                    , dateUpdate:  dateString
                         ))
                     
                     
+                        var albumFinded = false
+                        // If CoreData == nill then down tested and go to Save Album
+                        if albumsFromCoreData.count != 0 {
+                            for a in 0 ..< albumsFromCoreData.count {
+                                if albumsFromCoreData[a].albumID == Albums[index].albumID {
+                                    albumFinded = true
+                                    if albumsFromCoreData[a].dateUpdate != Albums[index].dateUpdate{
+                                        _ = CoreData.DownloadInformationAboutAlbum(delete: true, albumID: Albums[index].albumID)
+                                        _ = CoreData.DownloadInformationAboutPhotos(delete: true, albumID: Albums[index].albumID)
+                                        albumFinded = false
+                                    }
+                                }
+                            }
+                        }
+                    if albumFinded == false {
                         // Save Parament album
                         AlbumObject.userID = userID
                         AlbumObject.albumID = Albums[index].albumID
                         AlbumObject.albumName = Albums[index].albumName
                         AlbumObject.albumPhoto = Albums[index].albumPhoto
+                        AlbumObject.dateUpdate = Albums[index].dateUpdate
                         
                         // Save Album
                         do { try context.save() } catch { return }
-                    
+                        
                    
-                    //Get information about photo
-                    VK.API.Photos.get([VK.Arg.albumId: Albums[index].albumID]).send(
-                        onSuccess: {
-                            response in
-                           
-                           
-                            // Value for converter photo date
-                            let dayTimePeriodFormatter = DateFormatter()
-                            dayTimePeriodFormatter.dateFormat = "dd MMM YYYY"
-                            
-                            for i in 0 ..< response["count"].intValue {
+                        //Get information about photo
+                        VK.API.Photos.get([VK.Arg.albumId: Albums[index].albumID]).send(
+                            onSuccess: {
+                                response in
+                                for i in 0 ..< response["count"].intValue {
                                 
                                     let PhotoObject = Photo(entity: entityDescriptionPhoto!, insertInto: context)
                                 
@@ -118,14 +128,14 @@ class VKDelegateClass: VKDelegate {
                                     PhotoObject.photoLocLONG = response["items",i,"long"].stringValue
                                     PhotoObject.photoLocLAT = response["items",i,"lat"].stringValue
                                 
-                                do { try context.save() } catch { return }
-                             }
+                                    do { try context.save() } catch { return }
+                                }
                             
-                    },
-                        onError: {error in print(error)}
-                    )
+                            },
+                                onError: {error in print(error)}
+                            )
                     
-                 
+                    }
                 
                 }
                 
