@@ -10,6 +10,7 @@
 		8011E36A1E60BE6C0041F150 /* Pods_testVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011E3691E60BE6C0041F150 /* Pods_testVK.framework */; };
 		8011E36C1E60CAA80041F150 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8011E36B1E60CAA80041F150 /* MapViewController.swift */; };
 		8011E36E1E60CB550041F150 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011E36D1E60CB550041F150 /* MapKit.framework */; };
+		8011E3711E65FD9B0041F150 /* AlbumTableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8011E3701E65FD9B0041F150 /* AlbumTableConfigurator.swift */; };
 		8016E3F91E47D30700E49F5C /* VKDeleagateClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016E3F81E47D30700E49F5C /* VKDeleagateClass.swift */; };
 		80215A1A1E5393CF00042405 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80215A191E5393CE00042405 /* CoreDataManager.swift */; };
 		80215A241E5835BE00042405 /* Structurs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80215A231E5835BE00042405 /* Structurs.swift */; };
@@ -35,6 +36,7 @@
 		8011E3691E60BE6C0041F150 /* Pods_testVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_testVK.framework; path = "../../../Library/Developer/Xcode/DerivedData/testVK-cfrkyslsakkkxsdnfbtuiymerwlb/Build/Products/Debug-iphonesimulator/Pods_testVK.framework"; sourceTree = "<group>"; };
 		8011E36B1E60CAA80041F150 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8011E36D1E60CB550041F150 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8011E3701E65FD9B0041F150 /* AlbumTableConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableConfigurator.swift; sourceTree = "<group>"; };
 		8016E3F81E47D30700E49F5C /* VKDeleagateClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKDeleagateClass.swift; sourceTree = "<group>"; };
 		80215A191E5393CE00042405 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		80215A231E5835BE00042405 /* Structurs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structurs.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 				2E7A6CC44969D4CFC6A7CD53 /* Pods_testVK.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8011E3971E660EC90041F150 /* TableConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8011E3701E65FD9B0041F150 /* AlbumTableConfigurator.swift */,
+			);
+			name = TableConfig;
 			sourceTree = "<group>";
 		};
 		80215A271E59B98C00042405 /* Custom */ = {
@@ -129,6 +139,7 @@
 				80ADDBA21E47C01300D35E13 /* Main.storyboard */,
 				8078C10E1E4CE21E0065265E /* testVK.xcdatamodeld */,
 				80215A2A1E59C25700042405 /* View */,
+				8011E3971E660EC90041F150 /* TableConfig */,
 				80215A271E59B98C00042405 /* Custom */,
 				807720741E412DCD00F9B919 /* Assets.xcassets */,
 				807720761E412DCD00F9B919 /* LaunchScreen.storyboard */,
@@ -280,6 +291,7 @@
 				806AF08E1E4270E300C9C0B7 /* CustomTableViewCell.swift in Sources */,
 				806AF0B61E438C9800C9C0B7 /* PhotosViewController.swift in Sources */,
 				8016E3F91E47D30700E49F5C /* VKDeleagateClass.swift in Sources */,
+				8011E3711E65FD9B0041F150 /* AlbumTableConfigurator.swift in Sources */,
 				8078C1101E4CE21E0065265E /* testVK.xcdatamodeld in Sources */,
 				806AF0BA1E439EA700C9C0B7 /* PhotoViewController.swift in Sources */,
 				8011E36C1E60CAA80041F150 /* MapViewController.swift in Sources */,
