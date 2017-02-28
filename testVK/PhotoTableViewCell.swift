@@ -18,4 +18,12 @@ class PhotoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure (info: Structurs.photo){
+        imagePhoto.kf.setImage(with: URL(string: info.miniPhotoReference))
+        namePhoto?.text = info.photoName
+        datePhoto?.text = info.photoDate
+        imagePhoto.layer.cornerRadius = 30.0
+        imagePhoto.clipsToBounds = true
+    }
+    
 }

@@ -3,11 +3,15 @@ import SwiftyVK
 import CoreData
 import Kingfisher
 
-class PhotosViewController: UITableViewController {
+class PhotosViewController: UIViewController {
     
     
+    @IBOutlet weak var tableView: UITableView!
     var albumID = ""
     var Photo = [Structurs.photo()]
+    
+    let table = PhotosTableConfigurator()
+    
     
     var imagesDirectoryPath:String!
     var images: [UIImage]!
@@ -16,32 +20,20 @@ class PhotosViewController: UITableViewController {
     //---------------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        Photo.removeAll()
-        let CoreData = CoreDataManager()
-        Photo = CoreData.DownloadInformationAboutPhotos(albumID: albumID)
-    }
+        self.tableView.delegate = self.table
+        self.tableView.dataSource = self.table
+        table.load(albumID: albumID)
+        
+            }
     //---------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     //---------------------------------------------------------------------------------------
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Photo.count
-    }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
-        cell.imagePhoto.kf.setImage(with: URL(string: Photo[indexPath.row].miniPhotoReference))
-        cell.namePhoto?.text = Photo[indexPath.row].photoName
-        cell.datePhoto?.text = Photo[indexPath.row].photoDate
-        cell.imagePhoto.layer.cornerRadius = 30.0
-        cell.imagePhoto.clipsToBounds = true
-        
-        return cell
-    }
+   
+    
+    /*
     //---------------------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPhoto"{
@@ -58,7 +50,7 @@ class PhotosViewController: UITableViewController {
         }
     }
     //---------------------------------------------------------------------------------------
-    
+    */
     
     
     
