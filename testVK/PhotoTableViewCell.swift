@@ -18,7 +18,7 @@ class PhotoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure (info: Structurs.photo){
+    func configure (info: photo){
         imagePhoto.kf.setImage(with: URL(string: info.miniPhotoReference))
         namePhoto?.text = info.photoName
         datePhoto?.text = info.photoDate

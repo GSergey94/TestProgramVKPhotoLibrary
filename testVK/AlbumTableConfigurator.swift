@@ -1,9 +1,10 @@
 import Foundation
 import UIKit
 
-class AlbumTableConfigurator: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class AlbumTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSource{
     
-    var Albums = [Structurs.album()]
+    
+    var Albums = [album()]
     var index = 0 // IndexPath
     func load(){
     Albums.removeAll()

@@ -17,7 +17,7 @@ class CustomTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure (info: Structurs.album){
+    func configure (info: album){
         imageAlbum.kf.setImage(with: URL(string: info.albumPhoto))
         nameAlbum?.text = info.albumName
         imageAlbum.layer.cornerRadius = 30.0

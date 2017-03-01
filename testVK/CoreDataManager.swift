@@ -109,8 +109,8 @@ class CoreDataManager {
     //--------------------------------------------------------------
     //    Func for Download information about Albums from CoreData
     //--------------------------------------------------------------
-    func DownloadInformationAboutAlbum(delete:Bool = false, albumID:String = "") -> [Structurs.album]{
-        var Albums = [Structurs.album()]
+    func DownloadInformationAboutAlbum(delete:Bool = false, albumID:String = "") -> [album]{
+        var Albums = [album()]
         Albums.removeAll()
         
         let context = CoreDataManager.instance.managedObjectContext
@@ -135,7 +135,7 @@ class CoreDataManager {
             for result in results as! [Album] {
                 
                 if delete == false{
-                    Albums.append(Structurs.album.init(userID: user!
+                    Albums.append(album.init(userID: user!
                                                        ,albumID: result.albumID!
                                                        ,albumName: result.albumName!
                                                        ,albumPhoto: result.albumPhoto!
@@ -158,15 +158,15 @@ class CoreDataManager {
     //    Func for Download information about Photos from CoreData
     //--------------------------------------------------------------
 
-    func DownloadInformationAboutPhotos(delete:Bool = false, albumID:String = "")->[Structurs.photo]{
-        var Photo = [Structurs.photo()]
+    func DownloadInformationAboutPhotos(delete:Bool = false, albumID:String = "")->[photo]{
+        var Photo = [photo()]
         Photo.removeAll()
         
         let context = CoreDataManager.instance.managedObjectContext
     
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-        var sortDescriptorUserID = NSSortDescriptor(key: "idAlbum", ascending: true)
-        var resultPredicate = NSPredicate(format: "idAlbum = %@", albumID)
+        let sortDescriptorUserID = NSSortDescriptor(key: "idAlbum", ascending: true)
+        let resultPredicate = NSPredicate(format: "idAlbum = %@", albumID)
         
         
         
@@ -176,7 +176,7 @@ class CoreDataManager {
             let results = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest)
             for result in results as! [Photo] {
                 if delete == false{
-                Photo.append(Structurs.photo.init(   idPhoto: result.idPhoto!
+                Photo.append(photo.init(   idPhoto: result.idPhoto!
                     ,photoReference: result.photoReference!
                     ,miniPhotoReference: result.miniPhotoReference!
                     ,photoName: result.photoName!

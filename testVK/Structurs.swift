@@ -1,17 +1,7 @@
-//
-//  Album.swift
-//  testVK
-//
-//  Created by Владимир on 18.02.17.
-//  Copyright © 2017 Gorelovskiy. All rights reserved.
-//
 
-import Foundation
-import CoreData
+//import Foundation
 
-class Structurs {
-    
-    struct album{
+     struct album{
         var userID = ""
         var albumID = ""
         var albumName = ""
@@ -20,7 +10,7 @@ class Structurs {
 
     }
     
-    struct photo{
+     struct photo{
         var idPhoto = ""
         var photoReference = ""
         var miniPhotoReference = ""
@@ -30,7 +20,7 @@ class Structurs {
         var photoLocLAT = ""
     }
     
-    struct downloadPhoto{
+     struct downloadPhoto{
         var url = ""
         var id = ""
         var marker = false
@@ -39,4 +29,4 @@ class Structurs {
     }
     
     
-}
+

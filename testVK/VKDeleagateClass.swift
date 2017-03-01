@@ -39,7 +39,7 @@ class VKDelegateClass: VKDelegate {
         
         
         
-        var Albums = [Structurs.album()]
+        var Albums = [album()]
         Albums.removeAll()
     
         let CoreData = CoreDataManager()
@@ -71,8 +71,9 @@ class VKDelegateClass: VKDelegate {
                     let dateString = minutsTimePeriodFormatter.string(from: date as Date)
                     
                         // Create new object - Album
+                    
                         let AlbumObject = Album(entity: entityDescriptionAlbum!, insertInto: context)
-                        Albums.append(Structurs.album.init(
+                        Albums.append(album.init(
                                       userID: userID!
                                     , albumID: response["items",index,"id"].stringValue
                                     , albumName: response["items",index,"title"].stringValue

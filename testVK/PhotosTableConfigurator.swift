@@ -3,7 +3,7 @@ import UIKit
 
 class PhotosTableConfigurator: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var Photo = [Structurs.photo()]
+    var Photo = [photo()]
     
     func load(albumID: String){
         Photo.removeAll()

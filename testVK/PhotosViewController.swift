@@ -8,7 +8,7 @@ class PhotosViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var albumID = ""
-    var Photo = [Structurs.photo()]
+    var Photo = [photo()]
     
     let table = PhotosTableConfigurator()
     
