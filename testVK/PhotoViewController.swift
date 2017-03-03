@@ -3,27 +3,31 @@ import SwiftyVK
 
 class PhotoViewController: UIViewController {
     
-    var adressPhoto = ""
-    @IBOutlet weak var photo: UIImageView!
-    var photoLONG = ""
-    var photoLAT = ""
-    var photoIdentifier = ""
     
-    var namePhoto = ""
-    var datePhoto = ""
-    //---------------------------------------------------------------------------------------
+    @IBOutlet weak var photo: UIImageView!
+    
+    
+    var adressPhoto: String = ""
+    var photoLONG: String = ""
+    var photoLAT: String = ""
+    var photoIdentifier: String = ""
+    
+    var namePhoto: String = ""
+    var datePhoto: String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         photo.kf.setImage(with: URL(string: adressPhoto))
         
         
     }
-    //---------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-    //---------------------------------------------------------------------------------------
+    
+    
     @IBAction func Sharing(_ sender: Any) {
         //To obtain date about  userID
         let defaults = UserDefaults.standard
@@ -65,7 +69,8 @@ class PhotoViewController: UIViewController {
         
 
     }
-    //---------------------------------------------------------------------------------------
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap"{
         let destinationController = segue.destination as! MapViewController

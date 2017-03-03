@@ -5,10 +5,10 @@ import CoreLocation
 class MapViewController: UIViewController{
     
    
-    var namePhoto = ""
-    var datePhoto = ""
-    var photoLONG = ""
-    var photoLAT = ""
+    var namePhoto: String = ""
+    var datePhoto: String = ""
+    var photoLONG: String = ""
+    var photoLAT: String = ""
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -18,11 +18,11 @@ class MapViewController: UIViewController{
         
         
         
-    let LONG = Double(photoLONG)
-    let LAT = Double(photoLAT)
+    let locationLONG = Double(photoLONG)
+    let locationLAT = Double(photoLAT)
         
-        if LONG != nil {
-            let location = CLLocationCoordinate2DMake(LAT!, LONG!)
+        if locationLONG != nil {
+            let location = CLLocationCoordinate2DMake(locationLAT!, locationLONG!)
             let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = "Фото: \(namePhoto)"

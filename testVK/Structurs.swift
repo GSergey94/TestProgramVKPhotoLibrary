@@ -1,7 +1,4 @@
-
-//import Foundation
-
-     struct album{
+struct album{
         var userID = ""
         var albumID = ""
         var albumName = ""
@@ -9,8 +6,8 @@
         var dateUpdate = ""
 
     }
-    
-     struct photo{
+
+struct photo{
         var idPhoto = ""
         var photoReference = ""
         var miniPhotoReference = ""
@@ -20,7 +17,7 @@
         var photoLocLAT = ""
     }
     
-     struct downloadPhoto{
+struct downloadPhoto{
         var url = ""
         var id = ""
         var marker = false

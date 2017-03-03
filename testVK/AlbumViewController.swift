@@ -11,14 +11,14 @@ class AlbumViewController: UIViewController,  UINavigationControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
    
     var albumID = [String]()
-    let table = AlbumTableConfigurator()
+    let tableConfigurator = AlbumTableConfigurator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self.table
-        self.tableView.dataSource = self.table
-        table.load()
+        self.tableView.delegate = self.tableConfigurator
+        self.tableView.dataSource = self.tableConfigurator
+        tableConfigurator.load()
 
      }
     

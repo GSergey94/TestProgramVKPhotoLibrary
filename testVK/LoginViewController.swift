@@ -5,10 +5,10 @@ import CoreData
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var albumButton: UIButton!
-    let state = 2 // Состояние - Авторизирован
+    let state = 2 // State - LogIn
     
     
-    override func viewWillAppear(_ animated: Bool) { //  Анимация всплывающей кнопки
+    override func viewWillAppear(_ animated: Bool) { //  animation button
         albumButton.center.y += view.bounds.height
         UIView.animate(withDuration: 1.5, animations: {
             self.albumButton.center.y -= self.view.bounds.height
@@ -17,16 +17,11 @@ class LoginViewController: UIViewController {
         
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-          
- 
+     
     }
-        
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -43,7 +38,7 @@ class LoginViewController: UIViewController {
         // else go to Login view
         else
         {
-            // Создаем Окно с сообщением и кнопкой
+            
                 let alertMessage = UIAlertController(title: "Просмотр не доступен", message: "Для просмотра фотоальбомов войдите в свою учетную запись", preferredStyle: .alert)
                 let Login = UIAlertAction(title: "Войти", style: .default) { (_) -> Void in
                 VK.logIn()

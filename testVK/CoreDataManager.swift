@@ -3,6 +3,7 @@ import Foundation
 
 class CoreDataManager {
     
+    
     // Singleton
     static let instance = CoreDataManager()
     
@@ -106,6 +107,7 @@ class CoreDataManager {
         }
     }
     
+    
     //--------------------------------------------------------------
     //    Func for Download information about Albums from CoreData
     //--------------------------------------------------------------
@@ -114,7 +116,7 @@ class CoreDataManager {
         Albums.removeAll()
         
         let context = CoreDataManager.instance.managedObjectContext
-
+        
         let defaults = UserDefaults.standard
         let user = defaults.string(forKey: "userID")
         
@@ -136,14 +138,14 @@ class CoreDataManager {
                 
                 if delete == false{
                     Albums.append(album.init(userID: user!
-                                                       ,albumID: result.albumID!
-                                                       ,albumName: result.albumName!
-                                                       ,albumPhoto: result.albumPhoto!
-                                                       ,dateUpdate: result.dateUpdate!
+                        ,albumID: result.albumID!
+                        ,albumName: result.albumName!
+                        ,albumPhoto: result.albumPhoto!
+                        ,dateUpdate: result.dateUpdate!
                     ))
                 }
                 else{
-                context.delete(result as NSManagedObject)
+                    context.delete(result as NSManagedObject)
                 }
             }
             return Albums
@@ -157,13 +159,13 @@ class CoreDataManager {
     //--------------------------------------------------------------
     //    Func for Download information about Photos from CoreData
     //--------------------------------------------------------------
-
+    
     func DownloadInformationAboutPhotos(delete:Bool = false, albumID:String = "")->[photo]{
         var Photo = [photo()]
         Photo.removeAll()
         
         let context = CoreDataManager.instance.managedObjectContext
-    
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
         let sortDescriptorUserID = NSSortDescriptor(key: "idAlbum", ascending: true)
         let resultPredicate = NSPredicate(format: "idAlbum = %@", albumID)
@@ -176,14 +178,14 @@ class CoreDataManager {
             let results = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest)
             for result in results as! [Photo] {
                 if delete == false{
-                Photo.append(photo.init(   idPhoto: result.idPhoto!
-                    ,photoReference: result.photoReference!
-                    ,miniPhotoReference: result.miniPhotoReference!
-                    ,photoName: result.photoName!
-                    ,photoDate: result.photoDate!
-                    ,photoLocLONG: result.photoLocLONG!
-                    ,photoLocLAT: result.photoLocLAT!
-                ))
+                    Photo.append(photo.init(   idPhoto: result.idPhoto!
+                        ,photoReference: result.photoReference!
+                        ,miniPhotoReference: result.miniPhotoReference!
+                        ,photoName: result.photoName!
+                        ,photoDate: result.photoDate!
+                        ,photoLocLONG: result.photoLocLONG!
+                        ,photoLocLAT: result.photoLocLAT!
+                    ))
                 }
                 else{
                     context.delete(result as NSManagedObject)
@@ -195,6 +197,7 @@ class CoreDataManager {
         return Photo
         
     }
+
     
     
 }

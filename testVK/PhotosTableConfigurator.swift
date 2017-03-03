@@ -6,11 +6,20 @@ class PhotosTableConfigurator: UIViewController, UITableViewDelegate, UITableVie
     var Photo = [photo()]
     
     func load(albumID: String){
+        print("Получили альбом - \(albumID)")
+        
         Photo.removeAll()
         let CoreData = CoreDataManager()
         Photo = CoreData.DownloadInformationAboutPhotos(albumID: albumID)
         
+        print("Получили Фотографии - \(Photo[1].idPhoto)")
+        //let view = PhotosViewController()
+        //view.tableView.reloadData()
+        
+        
     }
+    
+    
     
     
     
