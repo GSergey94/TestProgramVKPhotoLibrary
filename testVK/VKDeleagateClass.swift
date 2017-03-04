@@ -84,7 +84,7 @@ class VKDelegateClass: VKDelegate {
                     
                         var albumFinded = false
                         // If CoreData == nill then down tested and go to Save Album
-                        if albumsFromCoreData.count != 0 {
+                    if albumsFromCoreData.count != 0 {
                             for a in 0 ..< albumsFromCoreData.count {
                                 if albumsFromCoreData[a].albumID == Albums[index].albumID {
                                     albumFinded = true
@@ -96,6 +96,7 @@ class VKDelegateClass: VKDelegate {
                                 }
                             }
                         }
+                    
                     if albumFinded == false {
                         // Save Parament album
                         AlbumObject.userID = userID

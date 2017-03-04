@@ -4,44 +4,37 @@ import SwiftyVK
 class PhotoViewController: UIViewController {
     
     
-    @IBOutlet weak var photo: UIImageView!
-    
-    
-    var adressPhoto: String = ""
-    var photoLONG: String = ""
-    var photoLAT: String = ""
-    var photoIdentifier: String = ""
-    
-    var namePhoto: String = ""
-    var datePhoto: String = ""
-    
+    @IBOutlet weak var photoImageView: UIImageView!
+    var photo:photo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photo.kf.setImage(with: URL(string: adressPhoto))
-        
-        
+        photoImageView.kf.setImage(with: URL(string: photo.photoReference))
+   
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
     
     
+    
+    // Func sharing photo on the wall VK
     @IBAction func Sharing(_ sender: Any) {
         //To obtain date about  userID
         let defaults = UserDefaults.standard
         let user = defaults.string(forKey: "userID")
         
-        // Create Alert for sharing photo to user wall
+        // Create Alert 
         let alert = UIAlertController(title: "Отправка фотографии", message: "Коментарий к фотографии:", preferredStyle: .alert)
         let CanselButton = UIAlertAction(title: "Отмена", style: .default) { (_) -> Void in }
         let SharingButton = UIAlertAction(title: "Поделиться записью", style: .default) { (_) -> Void in
             let textField = alert.textFields?[0]
-            if let tf = textField {
-                if let text = tf.text {
-                    let photo = "photo\(user!)_\(self.photoIdentifier)>"
-                    VK.API.Wall.post([VK.Arg.userId : user!, VK.Arg.message : text, VK.Arg.photo: self.adressPhoto, VK.Arg.attachment: photo]).send(
+            if let text = textField?.text {
+                
+                let photoAttachment = "photo\(user!)_\(self.photo.idPhoto)>"
+                    VK.API.Wall.post([VK.Arg.userId : user!, VK.Arg.message : text, VK.Arg.photo: self.photo.photoReference, VK.Arg.attachment: photoAttachment]).send(
                         onSuccess: {response in print("Succsess upload photo to wall")},
                         onError: {error in
                             print("Error upload photo: \n \(error)")
@@ -54,14 +47,12 @@ class PhotoViewController: UIViewController {
                         }
                         )
                     
-                }
+                
             }
         }
         
         alert.addTextField { (_) -> Void in
-            
         }
-        
         alert.addAction(SharingButton)
         alert.addAction(CanselButton)
         self.present(alert, animated: true, completion: nil)
@@ -73,11 +64,8 @@ class PhotoViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap"{
-        let destinationController = segue.destination as! MapViewController
-        destinationController.photoLAT = photoLAT
-        destinationController.photoLONG = photoLONG
-        destinationController.datePhoto = datePhoto
-        destinationController.namePhoto = namePhoto
+            let destinationController = segue.destination as! MapViewController
+            destinationController.photo = photo
         }
     }
     

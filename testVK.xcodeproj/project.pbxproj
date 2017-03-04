@@ -14,7 +14,8 @@
 		8011E3991E6618730041F150 /* PhotosTableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8011E3981E6618730041F150 /* PhotosTableConfigurator.swift */; };
 		8016E3F91E47D30700E49F5C /* VKDeleagateClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016E3F81E47D30700E49F5C /* VKDeleagateClass.swift */; };
 		80215A1A1E5393CF00042405 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80215A191E5393CE00042405 /* CoreDataManager.swift */; };
-		80215A241E5835BE00042405 /* Structurs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80215A231E5835BE00042405 /* Structurs.swift */; };
+		80215A241E5835BE00042405 /* StructursAndVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80215A231E5835BE00042405 /* StructursAndVar.swift */; };
+		802186941E6B234900012F89 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802186931E6B234900012F89 /* Router.swift */; };
 		806AF08E1E4270E300C9C0B7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF08D1E4270E300C9C0B7 /* CustomTableViewCell.swift */; };
 		806AF0901E4273C700C9C0B7 /* VK.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 806AF08F1E4273C700C9C0B7 /* VK.jpg */; };
 		806AF0921E42785000C9C0B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF0911E42785000C9C0B7 /* LoginViewController.swift */; };
@@ -41,7 +42,8 @@
 		8011E3981E6618730041F150 /* PhotosTableConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableConfigurator.swift; sourceTree = "<group>"; };
 		8016E3F81E47D30700E49F5C /* VKDeleagateClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKDeleagateClass.swift; sourceTree = "<group>"; };
 		80215A191E5393CE00042405 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		80215A231E5835BE00042405 /* Structurs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structurs.swift; sourceTree = "<group>"; };
+		80215A231E5835BE00042405 /* StructursAndVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructursAndVar.swift; sourceTree = "<group>"; };
+		802186931E6B234900012F89 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		806AF08D1E4270E300C9C0B7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		806AF08F1E4273C700C9C0B7 /* VK.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VK.jpg; sourceTree = "<group>"; };
 		806AF0911E42785000C9C0B7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -137,7 +139,8 @@
 			children = (
 				8077206D1E412DCD00F9B919 /* AppDelegate.swift */,
 				80215A191E5393CE00042405 /* CoreDataManager.swift */,
-				80215A231E5835BE00042405 /* Structurs.swift */,
+				80215A231E5835BE00042405 /* StructursAndVar.swift */,
+				802186931E6B234900012F89 /* Router.swift */,
 				8016E3F81E47D30700E49F5C /* VKDeleagateClass.swift */,
 				80ADDBA21E47C01300D35E13 /* Main.storyboard */,
 				8078C10E1E4CE21E0065265E /* testVK.xcdatamodeld */,
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				806AF0B81E438D0700C9C0B7 /* PhotoTableViewCell.swift in Sources */,
+				802186941E6B234900012F89 /* Router.swift in Sources */,
 				807720701E412DCD00F9B919 /* AlbumViewController.swift in Sources */,
 				806AF08E1E4270E300C9C0B7 /* CustomTableViewCell.swift in Sources */,
 				806AF0B61E438C9800C9C0B7 /* PhotosViewController.swift in Sources */,
@@ -300,7 +304,7 @@
 				8011E3991E6618730041F150 /* PhotosTableConfigurator.swift in Sources */,
 				8011E36C1E60CAA80041F150 /* MapViewController.swift in Sources */,
 				806AF0921E42785000C9C0B7 /* LoginViewController.swift in Sources */,
-				80215A241E5835BE00042405 /* Structurs.swift in Sources */,
+				80215A241E5835BE00042405 /* StructursAndVar.swift in Sources */,
 				80215A1A1E5393CF00042405 /* CoreDataManager.swift in Sources */,
 				8077206E1E412DCD00F9B919 /* AppDelegate.swift in Sources */,
 			);

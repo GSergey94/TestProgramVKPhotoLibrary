@@ -5,40 +5,35 @@ import CoreLocation
 class MapViewController: UIViewController{
     
    
-    var namePhoto: String = ""
-    var datePhoto: String = ""
-    var photoLONG: String = ""
-    var photoLAT: String = ""
-    
     @IBOutlet weak var mapView: MKMapView!
-    
+    var photo:photo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-    let locationLONG = Double(photoLONG)
-    let locationLAT = Double(photoLAT)
+        let locationLONG = Double(photo.photoLocLONG)
+        let locationLAT = Double(photo.photoLocLAT)
         
         if locationLONG != nil {
             let location = CLLocationCoordinate2DMake(locationLAT!, locationLONG!)
             let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "Фото: \(namePhoto)"
-        annotation.subtitle = datePhoto
+            annotation.coordinate = location
+            annotation.title = "Фото: \(photo.photoName)"
+            annotation.subtitle = photo.photoDate
         
-        let span = MKCoordinateSpanMake(0.2,0.2)
-        let region = MKCoordinateRegion(center: location, span: span)
+            let span = MKCoordinateSpanMake(0.2,0.2)
+            let region = MKCoordinateRegion(center: location, span: span)
         
-        mapView.setRegion(region, animated: true)
-        mapView.addAnnotation(annotation)
+            mapView.setRegion(region, animated: true)
+            mapView.addAnnotation(annotation)
         }
         else{
-            let alertMessage = UIAlertController(title: "Геолокация недоступна", message: "У данной фотографии отсутсвует информация о местоположении", preferredStyle: .alert)
-            let Login = UIAlertAction(title: "ОК", style: .default) { (_) -> Void in
-                
-            }
+            let alertMessage = UIAlertController(
+                                                title: "Геолокация недоступна"
+                                                ,message: "У данной фотографии отсутсвует информация о местоположении"
+                                                , preferredStyle: .alert)
+            
+            let Login = UIAlertAction(title: "ОК", style: .default) { (_) -> Void in }
             alertMessage.addAction(Login)
             self.present(alertMessage, animated: true, completion: nil)
             

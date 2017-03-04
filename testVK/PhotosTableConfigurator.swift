@@ -1,22 +1,16 @@
 import Foundation
 import UIKit
 
-class PhotosTableConfigurator: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class PhotosTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSource{
     
+    
+    weak var controller:PhotosViewController!
     var Photo = [photo()]
     
     func load(albumID: String){
-        print("Получили альбом - \(albumID)")
-        
         Photo.removeAll()
         let CoreData = CoreDataManager()
         Photo = CoreData.DownloadInformationAboutPhotos(albumID: albumID)
-        
-        print("Получили Фотографии - \(Photo[1].idPhoto)")
-        //let view = PhotosViewController()
-        //view.tableView.reloadData()
-        
-        
     }
     
     
@@ -42,9 +36,17 @@ class PhotosTableConfigurator: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print("User selected table row \(indexPath.row) and item ")
-        //let destinationController =  PhotosViewController()
-        //destinationController.albumID = Albums[indexPath.row].albumID
+        selectedPhoto.idPhoto = Photo[indexPath.row].idPhoto
+        selectedPhoto.photoReference = Photo[indexPath.row].photoReference
+        selectedPhoto.miniPhotoReference = Photo[indexPath.row].miniPhotoReference
+        selectedPhoto.photoName = Photo[indexPath.row].photoName
+        selectedPhoto.photoDate = Photo[indexPath.row].photoDate
+        selectedPhoto.photoLocLAT = Photo[indexPath.row].photoLocLAT
+        selectedPhoto.photoLocLONG = Photo[indexPath.row].photoLocLONG
+
+        
+        Router().goToPhotoViewController(photo: Photo[indexPath.row], controller: controller)
+       
     }
     
 }

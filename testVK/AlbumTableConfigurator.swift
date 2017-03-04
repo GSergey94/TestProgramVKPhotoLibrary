@@ -3,15 +3,14 @@ import UIKit
 
 class AlbumTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSource{
     
+    weak var controller: AlbumViewController!
     
     var Albums = [album()]
-    var index = 0 // IndexPath
-    
     
     func load(){
-    Albums.removeAll()
-    let CoreData = CoreDataManager()
-    Albums = CoreData.DownloadInformationAboutAlbum()
+        Albums.removeAll()
+        let CoreData = CoreDataManager()
+        Albums = CoreData.DownloadInformationAboutAlbum()
         
     }
         
@@ -36,11 +35,7 @@ class AlbumTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
-        let view = PhotosViewController()
-        view.albumID = Albums[indexPath.row].albumID
-        view.load()
-        
+        Router().goToPhotosViewController(albumID: Albums[indexPath.row].albumID, controller: controller)
     }
   
 }

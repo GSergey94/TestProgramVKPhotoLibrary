@@ -15,6 +15,8 @@ class AlbumViewController: UIViewController,  UINavigationControllerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Declared controller in AlbumTableConfigurator  as this AlbumViewController
+        self.tableConfigurator.controller = self
         
         self.tableView.delegate = self.tableConfigurator
         self.tableView.dataSource = self.tableConfigurator
@@ -28,16 +30,15 @@ class AlbumViewController: UIViewController,  UINavigationControllerDelegate{
     }
     
 
-    // Button LOG OUT
+    
     @IBAction func LogOut(_ sender: Any) {
-       
-        
         VK.logOut()
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginView")
         self.present(vc!, animated: true, completion: nil)
         
-        
+
     }
+   
     
     
     
