@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WSR-pL-waI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lDG-MQ-L1a">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -115,17 +115,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="lbw-DV-lfE" kind="relationship" relationship="rootViewController" id="GWd-kC-rsY"/>
+                        <segue destination="WSR-pL-waI" kind="relationship" relationship="rootViewController" id="0dQ-xq-ZsP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agn-gb-gT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1535" y="-505"/>
+            <point key="canvasLocation" x="-2266" y="-505"/>
         </scene>
         <!--Альбомы-->
         <scene sceneID="aET-cs-7FZ">
             <objects>
-                <viewController id="lbw-DV-lfE" customClass="AlbumViewController" customModule="testVK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="albumsIdentity" storyboardIdentifier="albumsIdentity" id="lbw-DV-lfE" customClass="AlbumViewController" customModule="testVK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z50-5y-nXC"/>
                         <viewControllerLayoutGuide type="bottom" id="klY-FS-LNA"/>
@@ -184,18 +184,7 @@
                             <constraint firstAttribute="trailing" secondItem="0a2-C7-FPo" secondAttribute="trailing" id="QPO-gb-v2U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Альбомы" id="8aJ-Kk-fYS">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="rVE-eM-5pY">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iq9-Ey-mWP">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LotOut"/>
-                                <connections>
-                                    <action selector="LogOut:" destination="lbw-DV-lfE" eventType="touchUpInside" id="ss8-ZR-9XU"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Альбомы" id="8aJ-Kk-fYS"/>
                     <connections>
                         <outlet property="tableView" destination="0a2-C7-FPo" id="owK-tX-Xhw"/>
                     </connections>
@@ -204,10 +193,10 @@
             </objects>
             <point key="canvasLocation" x="-842" y="-505"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="A0I-pW-sH5">
             <objects>
-                <viewController storyboardIdentifier="LoginView" id="WSR-pL-waI" customClass="LoginViewController" customModule="testVK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="startIdentity" storyboardIdentifier="startIdentity" id="WSR-pL-waI" customClass="StartViewController" customModule="testVK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GQn-hV-xjf"/>
                         <viewControllerLayoutGuide type="bottom" id="Brh-hh-hBd"/>
@@ -217,37 +206,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YLu-uL-F8w">
-                                <rect key="frame" x="25" y="283" width="324" height="100"/>
+                                <rect key="frame" x="77" y="283" width="220" height="100"/>
                                 <color key="backgroundColor" red="0.28627450980000002" green="0.47450980390000003" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="RuZ-V5-j0v"/>
+                                    <constraint firstAttribute="width" constant="220" id="SFk-ze-w6J"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="Просмотр Фотоальбомов">
+                                <state key="normal" title="Выйти">
                                     <color key="titleColor" red="0.79215686269999996" green="0.92549019610000005" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="GoToAlbumViewController:" destination="WSR-pL-waI" eventType="touchUpInside" id="cCm-Hw-ryI"/>
+                                    <action selector="logOutButton:" destination="WSR-pL-waI" eventType="touchUpInside" id="VEU-Zp-7bS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CSJ-Pa-hSV">
+                                <rect key="frame" x="77" y="164" width="220" height="100"/>
+                                <color key="backgroundColor" red="0.28627450980000002" green="0.47450980390000003" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="4kG-Wf-cD4"/>
+                                    <constraint firstAttribute="height" constant="100" id="oS1-pW-6k9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Просмотр альбомов ">
+                                    <color key="titleColor" red="0.79215686269999996" green="0.92549019610000005" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="lbw-DV-lfE" kind="show" id="0gO-2q-ht3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="YLu-uL-F8w" firstAttribute="centerY" secondItem="T7r-2N-swo" secondAttribute="centerY" id="ihv-YS-tYp"/>
-                            <constraint firstItem="YLu-uL-F8w" firstAttribute="centerX" secondItem="T7r-2N-swo" secondAttribute="centerX" id="lok-MR-bNv"/>
+                            <constraint firstItem="YLu-uL-F8w" firstAttribute="top" secondItem="CSJ-Pa-hSV" secondAttribute="bottom" constant="19" id="6vi-qb-K9r"/>
+                            <constraint firstItem="YLu-uL-F8w" firstAttribute="centerX" secondItem="T7r-2N-swo" secondAttribute="centerX" id="ArJ-Ub-6Zv"/>
+                            <constraint firstItem="CSJ-Pa-hSV" firstAttribute="top" secondItem="GQn-hV-xjf" secondAttribute="bottom" constant="100" id="Eiz-6O-N0S"/>
+                            <constraint firstItem="CSJ-Pa-hSV" firstAttribute="centerX" secondItem="T7r-2N-swo" secondAttribute="centerX" id="Rbd-P5-vgc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xEk-Qg-fTa"/>
                     <connections>
-                        <outlet property="albumButton" destination="YLu-uL-F8w" id="1QS-4W-ANM"/>
+                        <outlet property="albumButton" destination="CSJ-Pa-hSV" id="6dl-52-GMq"/>
+                        <outlet property="logButton" destination="YLu-uL-F8w" id="KX9-bW-OnV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeR-xF-Dlh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2167" y="-505"/>
+            <point key="canvasLocation" x="-1532" y="-505.09745127436287"/>
         </scene>
         <!--Фотографии-->
         <scene sceneID="Nsb-0e-KOY">

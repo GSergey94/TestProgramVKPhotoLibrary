@@ -1,14 +1,13 @@
 import Foundation
 import UIKit
 
-class AlbumTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSource{
+class AlbumTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSource{ // Extension
     
     weak var controller: AlbumViewController!
     
-    var Albums = [album()]
+    var Albums:[album] = []
     
     func load(){
-        Albums.removeAll()
         let CoreData = CoreDataManager()
         Albums = CoreData.DownloadInformationAboutAlbum()
         

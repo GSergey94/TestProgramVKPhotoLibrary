@@ -25,9 +25,3 @@ struct downloadPhoto{
         
     }
 
-public var selectedAlbumID:String = ""
-
-var selectedPhoto = photo.init(idPhoto: "", photoReference: "", miniPhotoReference: "", photoName: "", photoDate: "", photoLocLONG: "", photoLocLAT: "")
-
-
-

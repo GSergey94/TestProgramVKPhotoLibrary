@@ -9,7 +9,8 @@ class AlbumViewController: UIViewController,  UINavigationControllerDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
-   
+    
+    
     var albumID = [String]()
     let tableConfigurator = AlbumTableConfigurator()
     
@@ -30,14 +31,6 @@ class AlbumViewController: UIViewController,  UINavigationControllerDelegate{
     }
     
 
-    
-    @IBAction func LogOut(_ sender: Any) {
-        VK.logOut()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginView")
-        self.present(vc!, animated: true, completion: nil)
-        
-
-    }
    
     
     

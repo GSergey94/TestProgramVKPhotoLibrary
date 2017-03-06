@@ -1,15 +1,9 @@
 import SwiftyVK
 import CoreData
 
-
-
-// ---- Хранение картинок в памяти а не в Core Data - [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image.png"]] Objective - C
-
-
 class VKDelegateClass: VKDelegate {
     let appID = "5851140"
     let scope: Set<VK.Scope> = [.messages,.offline,.friends,.wall,.photos,.audio,.video,.docs,.market,.email]
-    let view = LoginViewController()
     
     
     init() {
@@ -17,7 +11,7 @@ class VKDelegateClass: VKDelegate {
         VK.configure(withAppId: appID, delegate: self)
         
     }
-    
+        
     //Функция вызывается когда нужны полномочия авторизации
     func vkWillAuthorize() -> Set<VK.Scope> {
         print("Запрашиваются полномочия для авторизации() \n")
@@ -155,8 +149,8 @@ class VKDelegateClass: VKDelegate {
             onError: {error in print(error)}
         )
 
-        
-        
+        //controller.reloadButton()
+       //Router().goToAlbumsViewController(controller: controller)
         
     }
     
@@ -170,7 +164,6 @@ class VKDelegateClass: VKDelegate {
     // Вызывается когда пользователь разлогинился
     func vkDidUnauthorize() {
         print("Пользователь вышел со своей учетной записи\n")
-
     }
     
     

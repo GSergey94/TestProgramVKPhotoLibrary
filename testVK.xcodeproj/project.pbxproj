@@ -17,8 +17,7 @@
 		80215A241E5835BE00042405 /* StructursAndVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80215A231E5835BE00042405 /* StructursAndVar.swift */; };
 		802186941E6B234900012F89 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802186931E6B234900012F89 /* Router.swift */; };
 		806AF08E1E4270E300C9C0B7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF08D1E4270E300C9C0B7 /* CustomTableViewCell.swift */; };
-		806AF0901E4273C700C9C0B7 /* VK.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 806AF08F1E4273C700C9C0B7 /* VK.jpg */; };
-		806AF0921E42785000C9C0B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF0911E42785000C9C0B7 /* LoginViewController.swift */; };
+		806AF0921E42785000C9C0B7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF0911E42785000C9C0B7 /* StartViewController.swift */; };
 		806AF0B61E438C9800C9C0B7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF0B51E438C9800C9C0B7 /* PhotosViewController.swift */; };
 		806AF0B81E438D0700C9C0B7 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF0B71E438D0700C9C0B7 /* PhotoTableViewCell.swift */; };
 		806AF0BA1E439EA700C9C0B7 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AF0B91E439EA700C9C0B7 /* PhotoViewController.swift */; };
@@ -45,8 +44,7 @@
 		80215A231E5835BE00042405 /* StructursAndVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructursAndVar.swift; sourceTree = "<group>"; };
 		802186931E6B234900012F89 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		806AF08D1E4270E300C9C0B7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		806AF08F1E4273C700C9C0B7 /* VK.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VK.jpg; sourceTree = "<group>"; };
-		806AF0911E42785000C9C0B7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		806AF0911E42785000C9C0B7 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		806AF0B51E438C9800C9C0B7 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		806AF0B71E438D0700C9C0B7 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		806AF0B91E439EA700C9C0B7 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +105,7 @@
 		80215A2A1E59C25700042405 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				806AF0911E42785000C9C0B7 /* LoginViewController.swift */,
+				806AF0911E42785000C9C0B7 /* StartViewController.swift */,
 				8077206F1E412DCD00F9B919 /* AlbumViewController.swift */,
 				806AF0B51E438C9800C9C0B7 /* PhotosViewController.swift */,
 				806AF0B91E439EA700C9C0B7 /* PhotoViewController.swift */,
@@ -150,7 +148,6 @@
 				807720741E412DCD00F9B919 /* Assets.xcassets */,
 				807720761E412DCD00F9B919 /* LaunchScreen.storyboard */,
 				807720791E412DCD00F9B919 /* Info.plist */,
-				806AF08F1E4273C700C9C0B7 /* VK.jpg */,
 			);
 			path = testVK;
 			sourceTree = "<group>";
@@ -232,7 +229,6 @@
 			files = (
 				807720781E412DCD00F9B919 /* LaunchScreen.storyboard in Resources */,
 				807720751E412DCD00F9B919 /* Assets.xcassets in Resources */,
-				806AF0901E4273C700C9C0B7 /* VK.jpg in Resources */,
 				80ADDBA41E47C01300D35E13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,7 +299,7 @@
 				806AF0BA1E439EA700C9C0B7 /* PhotoViewController.swift in Sources */,
 				8011E3991E6618730041F150 /* PhotosTableConfigurator.swift in Sources */,
 				8011E36C1E60CAA80041F150 /* MapViewController.swift in Sources */,
-				806AF0921E42785000C9C0B7 /* LoginViewController.swift in Sources */,
+				806AF0921E42785000C9C0B7 /* StartViewController.swift in Sources */,
 				80215A241E5835BE00042405 /* StructursAndVar.swift in Sources */,
 				80215A1A1E5393CF00042405 /* CoreDataManager.swift in Sources */,
 				8077206E1E412DCD00F9B919 /* AppDelegate.swift in Sources */,

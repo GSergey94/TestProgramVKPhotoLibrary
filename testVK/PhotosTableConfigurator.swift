@@ -5,10 +5,9 @@ class PhotosTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSou
     
     
     weak var controller:PhotosViewController!
-    var Photo = [photo()]
+    var Photo:[photo] = []
     
     func load(albumID: String){
-        Photo.removeAll()
         let CoreData = CoreDataManager()
         Photo = CoreData.DownloadInformationAboutPhotos(albumID: albumID)
     }
@@ -36,14 +35,6 @@ class PhotosTableConfigurator: NSObject, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        selectedPhoto.idPhoto = Photo[indexPath.row].idPhoto
-        selectedPhoto.photoReference = Photo[indexPath.row].photoReference
-        selectedPhoto.miniPhotoReference = Photo[indexPath.row].miniPhotoReference
-        selectedPhoto.photoName = Photo[indexPath.row].photoName
-        selectedPhoto.photoDate = Photo[indexPath.row].photoDate
-        selectedPhoto.photoLocLAT = Photo[indexPath.row].photoLocLAT
-        selectedPhoto.photoLocLONG = Photo[indexPath.row].photoLocLONG
-
         
         Router().goToPhotoViewController(photo: Photo[indexPath.row], controller: controller)
        

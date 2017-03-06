@@ -1,3 +1,4 @@
+import UIKit
 
 struct Router{
     
@@ -15,4 +16,18 @@ struct Router{
         controller.navigationController?.pushViewController(view, animated: true)
     }
     
+    func goToAlbumsViewController(controller: StartViewController){
+        let view: AlbumViewController = controller.storyboard?.instantiateViewController(withIdentifier: "albumsIdentity") as! AlbumViewController
+        controller.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    func refreshButton(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let view: StartViewController = storyboard.instantiateViewController(withIdentifier: "startIdentity") as! StartViewController
+        view.refreshButton()
+       
+    }
+    
 }
+
+    
