@@ -22,20 +22,17 @@ class VKDelegateClass: VKDelegate {
     //Вызывается когда пользователь входит в систему -- Тут можно начинать отправлять запросы к API
     func vkDidAuthorizeWith(parameters: Dictionary<String, String>) {
         print("Пользователь вошел в систему\n")
+        //Update button state
+        controlViewController().refreshButton()
         //Сохранение UserID
         let userID = parameters["user_id"]
-        
         //Save userID
         let defaults = UserDefaults.standard
         defaults.setValue(userID, forKey: "userID")
         defaults.synchronize()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
+        var Albums:[album] = []
         
-        
-        
-        var Albums = [album()]
-        Albums.removeAll()
-    
         let CoreData = CoreDataManager()
         var albumsFromCoreData = CoreData.DownloadInformationAboutAlbum()
         // Value for converter photo date
@@ -43,29 +40,20 @@ class VKDelegateClass: VKDelegate {
         dayTimePeriodFormatter.dateFormat = "dd MMM YYYY"
         let minutsTimePeriodFormatter = DateFormatter()
         minutsTimePeriodFormatter.dateFormat = "dd MMM YYYY HH:mm:ss"
-        
-        
         // Get information about alboms
         VK.API.Photos.getAlbums([VK.Arg.needCovers: userID!]).send(
             onSuccess: {
                 response in
-                
-                
-                
                 let context = CoreDataManager.instance.managedObjectContext
                 // Entity Album
                 let entityDescriptionAlbum = NSEntityDescription.entity(forEntityName: "Album", in: context)
                 // Entity Photo
                 let entityDescriptionPhoto = NSEntityDescription.entity(forEntityName: "Photo", in: context)
-               
                 for index in 0 ..< response["count"].intValue {
-                    
                     // Get Date update Album
                     let date = NSDate(timeIntervalSince1970: (response["items",index,"updated"].doubleValue))
                     let dateString = minutsTimePeriodFormatter.string(from: date as Date)
-                    
                         // Create new object - Album
-                    
                         let AlbumObject = Album(entity: entityDescriptionAlbum!, insertInto: context)
                         Albums.append(album.init(
                                       userID: userID!
@@ -74,10 +62,8 @@ class VKDelegateClass: VKDelegate {
                                     , albumPhoto: response["items",index,"thumb_src"].stringValue
                                     , dateUpdate:  dateString
                         ))
-                    
-                    
-                        var albumFinded = false
-                        // If CoreData == nill then down tested and go to Save Album
+                    var albumFinded = false
+                    // If CoreData == nill then down tested and go to Save Album
                     if albumsFromCoreData.count != 0 {
                             for a in 0 ..< albumsFromCoreData.count {
                                 if albumsFromCoreData[a].albumID == Albums[index].albumID {
@@ -90,7 +76,6 @@ class VKDelegateClass: VKDelegate {
                                 }
                             }
                         }
-                    
                     if albumFinded == false {
                         // Save Parament album
                         AlbumObject.userID = userID
@@ -98,11 +83,8 @@ class VKDelegateClass: VKDelegate {
                         AlbumObject.albumName = Albums[index].albumName
                         AlbumObject.albumPhoto = Albums[index].albumPhoto
                         AlbumObject.dateUpdate = Albums[index].dateUpdate
-                        
                         // Save Album
                         do { try context.save() } catch { return }
-                        
-                   
                         //Get information about photo
                         VK.API.Photos.get([VK.Arg.albumId: Albums[index].albumID]).send(
                             onSuccess: {
@@ -134,24 +116,14 @@ class VKDelegateClass: VKDelegate {
                     }
                 
                 }
-                
-                
-                
-                 //Save information about user data:
+                //Save information about user data:
                  let defaults = UserDefaults.standard
                  defaults.setValue(userID, forKey: userID!)
                  defaults.synchronize()
                  NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
-            
-                
-                
         },
             onError: {error in print(error)}
         )
-
-        //controller.reloadButton()
-       //Router().goToAlbumsViewController(controller: controller)
-        
     }
     
     // Вызванный, когда SwiftyVK не может авторизоваться. Позволять приложению знать, что что-то пошло не так, как надо.
@@ -164,6 +136,8 @@ class VKDelegateClass: VKDelegate {
     // Вызывается когда пользователь разлогинился
     func vkDidUnauthorize() {
         print("Пользователь вышел со своей учетной записи\n")
+        controlViewController().refreshButton()
+        
     }
     
     

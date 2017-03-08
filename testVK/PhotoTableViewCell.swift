@@ -9,7 +9,9 @@ class PhotoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        imagePhoto.layer.cornerRadius = 30.0
+        imagePhoto.clipsToBounds = true
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,8 +24,6 @@ class PhotoTableViewCell: UITableViewCell {
         imagePhoto.kf.setImage(with: URL(string: info.miniPhotoReference))
         namePhoto?.text = info.photoName
         datePhoto?.text = info.photoDate
-        imagePhoto.layer.cornerRadius = 30.0
-        imagePhoto.clipsToBounds = true
-    }
+            }
     
 }

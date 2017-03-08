@@ -8,9 +8,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var albumButton: UIButton!
     @IBOutlet weak var logButton: UIButton!
     let state = 2 // State - LogIn
-    
     let vkDelegateClass = VKDelegateClass()
-    
     
     override func viewWillAppear(_ animated: Bool) { //  animation button
         logButton.center.y += view.bounds.height
@@ -21,18 +19,13 @@ class StartViewController: UIViewController {
             self.albumButton.center.y -= self.view.bounds.height
         })
         
-        
-        
-        
     }
-        
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshButton()
+       // controlViewController().view = self
         
-        //Generate text albumButton
+        refreshButton()
         if VK.state.hashValue == state {
             Router().goToAlbumsViewController(controller: self)
         }
@@ -40,24 +33,15 @@ class StartViewController: UIViewController {
      
     }
     
-    
-    
-   
     @IBAction func logOutButton(_ sender: Any) {
-       
         if VK.state.hashValue == state {
             VK.logOut()
-            
-            
         }
         else{
             VK.logIn()
-            
-                    }
+        }
  
     }
-    
-    
     func refreshButton(){
         if VK.state.hashValue == state {
             albumButton.isHidden = false;

@@ -27,7 +27,7 @@ class MapViewController: UIViewController{
             mapView.setRegion(region, animated: true)
             mapView.addAnnotation(annotation)
         }
-        else{
+        else{//guard
             let alertMessage = UIAlertController(
                                                 title: "Геолокация недоступна"
                                                 ,message: "У данной фотографии отсутсвует информация о местоположении"
@@ -41,11 +41,7 @@ class MapViewController: UIViewController{
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
+  
     
     
     

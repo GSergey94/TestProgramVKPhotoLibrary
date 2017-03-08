@@ -2,7 +2,7 @@ import UIKit
 
 struct Router{
     
-    
+   
     func goToPhotoViewController(photo: photo,controller: PhotosViewController){
         let view: PhotoViewController = controller.storyboard?.instantiateViewController(withIdentifier: "photoIdentity") as! PhotoViewController
         view.photo = photo
@@ -21,12 +21,7 @@ struct Router{
         controller.navigationController?.pushViewController(view, animated: true)
     }
     
-    func refreshButton(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let view: StartViewController = storyboard.instantiateViewController(withIdentifier: "startIdentity") as! StartViewController
-        view.refreshButton()
-       
-    }
+    
     
 }
 

@@ -35,12 +35,10 @@ class PhotoViewController: UIViewController {
                 
                 let photoAttachment = "photo\(user!)_\(self.photo.idPhoto)>"
                     VK.API.Wall.post([VK.Arg.userId : user!, VK.Arg.message : text, VK.Arg.photo: self.photo.photoReference, VK.Arg.attachment: photoAttachment]).send(
-                        onSuccess: {response in print("Succsess upload photo to wall")},
+                        onSuccess: {response in },
                         onError: {error in
-                            print("Error upload photo: \n \(error)")
                             let alertMessage = UIAlertController(title: "Не удалось отправить фотографию", message: "", preferredStyle: .alert)
-                            let buttonOK = UIAlertAction(title: "ОК", style: .default) { (_) -> Void in
-                                
+                            let buttonOK = UIAlertAction(title: "ОК", style: .default) { (_) -> Void in 
                             }
                             alertMessage.addAction(buttonOK)
                             self.present(alertMessage, animated: true, completion: nil)
